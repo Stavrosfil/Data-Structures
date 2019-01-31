@@ -10,7 +10,7 @@ public class Sort {
         arr[a] = temp;
     }
 
-    // Implementation of Insertion Sort
+    // Insertion Sort
     int[] insertionSort(int[] arr) {
 
         // Initialize an array to return for statistics
@@ -45,7 +45,7 @@ public class Sort {
         return statistics;
     }
 
-    // Implementation of Bubble Sort
+    // Bubble Sort
     int[] bubbleSort(int[] arr) {
         // Flag for complexity optimization
         int flag = 1;
@@ -66,5 +66,21 @@ public class Sort {
         }
 
         return null;
+    }
+
+    // Selection Sort
+    void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            // Initialize the minimum number index as the starting point.
+            int min = i;
+            // Find the smallest element in the array
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[min]) {
+                    min = j;
+                }
+            }
+            // Swap the smallest element with the starting point element of the loop.
+            swap(arr, i, min);
+        }
     }
 }
