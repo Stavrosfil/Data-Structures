@@ -1,18 +1,13 @@
 
 public class Sort {
 
-    static final int N = 100;
-    static int[] arr;
-
     public Sort() {
-        arr = new int[N];
-        for (int i = 0; i < N; i++) {
-            arr[i] = N - i;
-        }
     }
 
-    void swap() {
-
+    void swap(int[] arr, int a, int b) {
+        int temp = arr[b];
+        arr[b] = arr[a];
+        arr[a] = temp;
     }
 
     // Implementation of Insertion Sort
@@ -22,10 +17,10 @@ public class Sort {
         // [0]: Total accesses
         // [1]: Expected accesses based on complexity
         int[] statistics = new int[2];
-        //Initialize a counter to measure the total actions taken
+        // Initialize a counter to measure the total actions taken
         int counter = 0;
 
-        for (int i = 1; i < N; i++) {
+        for (int i = 1; i < arr.length; i++) {
             // Temporary index
             int j = i;
             // The number we want to place right now
@@ -50,14 +45,26 @@ public class Sort {
         return statistics;
     }
 
-    public static void main(String[] args) throws Exception {
-        Sort s = new Sort();
-        int[] statistics = s.insertionSort(arr);
-        for (int i = 0; i < N; i++) {
-            System.out.println(s.arr[i]);
+    // Implementation of Bubble Sort
+    int[] bubbleSort(int[] arr) {
+        // Flag for complexity optimization
+        int flag = 1;
+        // We repeat the proccess N-1 times, where N: array length.
+        for (int i = 0; i < arr.length - 1; i++) {
+            // This for loop is i times smaller because the i elements in the right of the
+            // array are already sorted and we don't need to check those.
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                // If current element is larger than the next one, swap them.
+                if (arr[j + 1] < arr[j]) {
+                    swap(arr, j, j + 1);
+                    flag = 0;
+                }
+            }
+            // If no change happened, array is sorted.
+            if (flag == 1)
+                break;
         }
-        System.out.println(statistics[0]);
-        System.out.println(statistics[1]);
-        
+
+        return null;
     }
 }
